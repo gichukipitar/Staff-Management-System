@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import EmployeeService from "../Services/EmployeeService";
+import {Link, useNavigate} from "react-router-dom";
 
 class ListEmployeeComponent extends Component {
     constructor(props) {
@@ -7,17 +8,31 @@ class ListEmployeeComponent extends Component {
         this.state = {
             employees: []
         }
+        this.addEmployee = this.addEmployee.bind(this);
     }
     componentDidMount() {
         EmployeeService.getEmployees().then((res)=>{
            this.setState({employees:res.data});
         });
     }
+    addEmployee(){
+        //this.props.history.push('/add-employee');
+    }
+
+
+
+
 
     render() {
         return (
             <div>
                 <h2 className="text-center">Employees List</h2>
+                <div>
+                    <Link to = '/add-employee'> <button className="btn btn-primary" >Add Employee</button>
+                    </Link>
+
+                </div>
+
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
